@@ -2,6 +2,13 @@
 
 Place colored dots on Revit elements based on filter rules.
 
+- [Installation](#installation)
+	- [Recommended Installation Methods](#recommended-installation-methods)
+	- [Manual Installation](#manual-installation)
+- [Configuration](#configuration)
+	- [JSON File Anatomy](#json-file-anatomy)
+		- [Rules](#rules)
+- [Commands](#commands)
 
 ## Installation
 
