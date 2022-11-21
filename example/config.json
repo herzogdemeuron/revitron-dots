@@ -1,0 +1,42 @@
+{
+	"Set_01": {
+		"radius": 0.5,
+		"rules": [
+			{
+				"color": "#ff2288",
+				"filters": [
+					{
+						"rule": "byStringContains",
+						"args": ["Family and Type", "2134mm"]
+					},
+					{
+						"rule": "byStringContains",
+						"args": ["Family and Type", "single"]
+					}
+				]
+			},
+			{
+				"color": "#33ffcc",
+				"filters": [
+					{
+						"rule": "byStringContains",
+						"args": ["Family and Type", "2032mm"]
+					},
+					{
+						"rule": "byStringContains",
+						"args": ["Family and Type", "flush"]
+					}
+				]
+			},
+			{
+				"color": "#0033ff",
+				"filters": [
+					{
+						"rule": "byCategory",
+						"args": ["Doors"]
+					}
+				]
+			}
+		]
+	}
+}
