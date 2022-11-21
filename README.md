@@ -33,11 +33,11 @@ A configuration file consits of one or more *sets*. Each set defines the *rules*
 {
   "Set_01": {
     "radius": 0.5,
-    "rules": [...]
+    "rules": []
   },
   "Set_02": {
     "radius": 0.3,
-    "rules": [...]
+    "rules": []
   }
 }
 ~~~
@@ -60,15 +60,11 @@ Rules are used to associate a color with a list of filters. A filter is an objec
           },
           {
             "rule": "...",
-            "args": [...]
+            "args": ["..."]
           }
         ]
-      },
-      ...
+      }
     ]
-  },
-  "Set_02": {
-    ...
   }
 }
 ~~~
@@ -81,6 +77,6 @@ The following commands are included in the this extension and can be found in `R
 
 | Name | Description |
 | --- | --- |
-| `Generate Dots in Active View` | Place dots according to the selected set of rules in the currently active view. Exiting dots will be removed. |
-| `Remove Dots in View` | Remove all dots from the currently active view |
-| `Select Configuartion File` | Select a `.json` configuration file to be linked to your currently active model. |
+| Generate Dots in Active View | Place dots according to the selected set of rules in the currently active view. Exiting dots will be removed. |
+| Remove Dots in View | Remove all dots from the currently active view |
+| Select Configuartion File | Select a `.json` configuration file to be linked to your currently active model. |
