@@ -58,8 +58,7 @@ def createDots(element, colors, id, radius):
 		dot = revitron.Create.familyInstance(id, _p, view=view)
 		color = revitron.Color.fromHex(colors[m])
 		ogs = revitron.DB.OverrideGraphicSettings()
-		ogs.SetProjectionFillColor(color)
-		ogs.SetCutFillColor(color)
+		ogs.SetSurfaceForegroundPatternColor(color)
 		view.SetElementOverrides(dot.Id, ogs)
 		_(dot).set('Radius', radius)
 
