@@ -1,5 +1,6 @@
 import revitron
 import json
+import io
 from os.path import dirname, join
 from revitron import _
 from pyrevit import revit
@@ -11,7 +12,7 @@ def getConfig():
 	config = revitron.DocumentConfigStorage().get('revitron.dots', dict())
 	configFile = config.get('file', '')
 	try:
-		with open(configFile) as f:
+		with io.open(configFile, encoding='utf-8') as f:
 			return json.load(f)
 	except:
 		return False
