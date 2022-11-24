@@ -76,7 +76,7 @@ def createDots(element, colors, id, radius):
 
 
 def filterElements(filters):
-	fltr = revitron.Filter()
+	fltr = revitron.Filter(revitron.ACTIVE_VIEW.Id)
 	for f in filters:
 		evaluator = getattr(revitron.Filter, f.get('rule'))
 		fltr = evaluator(fltr, *f.get('args'))
