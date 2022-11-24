@@ -1,5 +1,6 @@
 import revitron
-from pyrevit import forms
+import os
+from pyrevit import forms, script
 
 config = revitron.DocumentConfigStorage().get('revitron.dots', dict())
 configFile = config.get('file', '')
@@ -9,10 +10,21 @@ msg = 'No configuration is selected.'
 if configFile:
 	msg = 'Selected configuration:\n{}'.format(configFile)
 
-optionSelect = 'Select Configuration'
-optionCancel = 'Close'
+optionSelect = 'Select Configuration File'
+optionOpenLocation = 'Open Configuration File Location'
+optionCancel = 'Cancel'
 
-if forms.alert(msg, options=[optionSelect, optionCancel]) == optionSelect:
+res = None
+
+if configFile:
+	res = forms.alert(msg, options=[optionSelect, optionOpenLocation, optionCancel])
+else:
+	res = forms.alert(msg, options=[optionSelect, optionCancel])
+
+if res == optionOpenLocation:
+	script.show_folder_in_explorer(os.path.dirname(configFile))
+
+if res == optionSelect:
 
 	jsonFile = forms.save_file(
 	    file_ext='json',

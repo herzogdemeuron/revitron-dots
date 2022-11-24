@@ -1,5 +1,5 @@
 layout:
   - Generate[title:Generate Dots in View]
   - ClearView[title:Remove Dots in View]
-  - Configure[title:Select Configuration File]
+  - Configure[title:Configuration]
   - Help
