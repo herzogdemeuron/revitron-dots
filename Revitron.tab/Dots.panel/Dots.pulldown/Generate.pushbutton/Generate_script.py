@@ -40,5 +40,10 @@ if window.ok:
 
 	with revitron.Transaction():
 		dots.removeExistingDots()
-		for elId, colors in elIdColorMap.items():
-			dots.createDots(_(elId).element, colors, symId, radius)
+		max_value = len(elIdColorMap.keys())
+		counter = 0
+		with forms.ProgressBar(title='Creating Dots ... ({value} of {max_value})') as pb:
+			for elId, colors in elIdColorMap.items():
+				dots.createDots(_(elId).element, colors, symId, radius)
+				counter += 1
+				pb.update_progress(counter, max_value)

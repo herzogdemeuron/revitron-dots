@@ -3,7 +3,7 @@ import json
 import io
 from os.path import dirname, join
 from revitron import _
-from pyrevit import revit
+from pyrevit import revit, forms
 
 DOT_FAMILY = 'RevitronDot'
 
@@ -43,8 +43,16 @@ def findSymbolId():
 def removeExistingDots():
 	fltr = revitron.Filter(revitron.ACTIVE_VIEW.Id).byCategory('DetailComponents')
 	fltr = fltr.byStringEquals('Family Name', DOT_FAMILY).noTypes()
-	for dot in fltr.getElements():
-		_(dot).delete()
+	elements = fltr.getElements()
+	max_value = len(elements)
+	counter = 0
+	with forms.ProgressBar(
+	    title='Deleting existing dots ... ({value} of {max_value})'
+	) as pb:
+		for dot in elements:
+			_(dot).delete()
+			counter += 1
+			pb.update_progress(counter, max_value)
 
 
 def createDots(element, colors, id, radius):
