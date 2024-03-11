@@ -58,7 +58,10 @@ def removeExistingDots():
 def createDots(element, colors, id, radius):
 	try:
 		view = revitron.ACTIVE_VIEW
-		point = element.Location.Point
+		try:
+			point = element.Location.Point
+		except:
+			point = element.GetTransform().Origin
 		xyz = revitron.DB.XYZ
 		grid = radius * 2.75
 		n = len(colors)
@@ -71,8 +74,8 @@ def createDots(element, colors, id, radius):
 			ogs.SetSurfaceForegroundPatternColor(color)
 			view.SetElementOverrides(dot.Id, ogs)
 			_(dot).set('Radius', radius)
-	except:
-		pass
+	except Exception as e:
+		print(e)
 
 
 def filterElements(filters):
