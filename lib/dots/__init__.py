@@ -77,10 +77,19 @@ def createDots(element, colors, id, radius):
 	except Exception as e:
 		print(e)
 
-
-def filterElements(filters):
+def _filterElements(filters):
 	fltr = revitron.Filter(revitron.ACTIVE_VIEW.Id)
 	for f in filters:
 		evaluator = getattr(revitron.Filter, f.get('rule'))
 		fltr = evaluator(fltr, *f.get('args'))
 	return fltr.noTypes().getElementIds()
+
+def filterElements(filters):
+	results = []
+	links = revitron.Filter().byClass('RevitLinkInstance').byCategory('RVT Links').getElements()
+	linkedDocs = [l.GetLinkDocument() for l in links if l.GetLinkDocument()]
+	results += _filterElements(filters)
+	for doc in linkedDocs:
+		with revitron.Document(doc):
+			results += _filterElements(filters)
+	return results
